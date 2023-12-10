@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "8521be1c-6ff9-4026-a45e-b427a0b2d00a",
+		"name": "_Common Library_",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12440242"
+	},
+	"item": [
+		{
+			"name": "Common.Tests",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"postman.setGlobalVariable(\"comTests\", () => {",
+							"    const basicPositive = () => {",
+							"        pm.test('Status code is 200', () => {",
+							"            pm.response.to.have.status(200);",
+							"        })",
+							"        pm.test('Response is an Object or Array', () => {",
+							"            pm.expect(pm.response.json()).to.be.an('object');",
+							"        })",
+							"    }",
+							"    const countResults = () => {",
+							"        pm.test('Info.result == results length', () => {",
+							"            const results_length = pm.response.json().results.length;",
+							"            const results_info_length = pm.response.json().info.results;",
+							"            pm.expect(results_info_length).to.be.eq(results_length);",
+							"        })",
+							"        pm.test('Info.result == requested number', () => {",
+							"            const request_params = {}",
+							"            pm.request.url.query.all().forEach((param) => { request_params[param.key] = param.value});",
+							"            const request_results_length = request_params.results;",
+							"            const results_info_length = pm.response.json().info.results;",
+							"            pm.expect(results_info_length.toString()).to.be.eq(request_results_length.toString());",
+							"        })",
+							"    }",
+							"    return {",
+							"        positive: {",
+							"            basicPositive,",
+							"            countResults,",
+							"        }",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mock.codes/200",
+					"protocol": "https",
+					"host": [
+						"mock",
+						"codes"
+					],
+					"path": [
+						"200"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
