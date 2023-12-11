@@ -14,7 +14,7 @@
 					"script": {
 						"exec": [
 							"const comTests = eval(globals.comTests)();",
-							"comTests.positive.basicPositive();"
+							"comTests.basicPositive();"
 						],
 						"type": "text/javascript"
 					}
@@ -40,8 +40,8 @@
 					"script": {
 						"exec": [
 							"const comTests = eval(globals.comTests)();",
-							"comTests.positive.basicPositive();",
-							"comTests.positive.countResults();"
+							"comTests.basicPositive();",
+							"comTests.countResults();"
 						],
 						"type": "text/javascript"
 					}
